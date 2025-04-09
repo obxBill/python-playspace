@@ -37,7 +37,6 @@ while True:
         stats[label] = value
 
     for card in cards4:
-        #label = card.select_one("div.nav_tour").text.strip()
         label = "Tour"
         value = card.select_one("div.nav_tour_selected").text.strip()
         stats[label] = value        
