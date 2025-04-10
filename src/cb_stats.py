@@ -43,7 +43,8 @@ while True:
 
     # Write stats to file for OBS
     with open(output_file, "w") as f:
-        f.write(f"CombatBox Tour: {stats.get('Tour', 'N/A')}\n")
+        f.write(f"CombatBox Tour: {stats.get('Tour', 'N/A')}     ")
+        f.write(f"Pilot Rating (Fighter) {stats.get('Position Fighter Rating', 'N/A')}\n")
         f.write(f"Aerial Victories: {stats.get('Aerial victories', 'N/A')}  ")
         f.write(f"Ground Targets Destroyed: {stats.get('Destroyed on Ground', 'N/A')}  ")
         f.write(f"Kill/Death Ratio: {stats.get('K/D - Kills per Death', 'N/A')}  ")
