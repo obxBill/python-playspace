@@ -1,4 +1,5 @@
 import requests
+import time
 from bs4 import BeautifulSoup
 
 URL = "https://tacticalairwar.com/pilot.php?name=ACG_Wind"
@@ -58,8 +59,9 @@ def write_stats_to_file(stats, filename="taw_stats.txt"):
         f.write("  ".join(f"{k}: {v}" for k, v in items[:midpoint]) + "  ")
         f.write("  ".join(f"{k}: {v}" for k, v in items[midpoint:]))
 
-
-if __name__ == "__main__":
-    stats = get_taw_stats()
-    write_stats_to_file(stats)
-    print("Stats written to taw_stats.txt")
+while True:
+    if __name__ == "__main__":
+        stats = get_taw_stats()
+        write_stats_to_file(stats)
+        print("Stats written to taw_stats.txt")
+    time.sleep(3600)  # Wait 1 hour before fetching again
