@@ -4,9 +4,10 @@ A collection of webserivce API handlers build with Python.  Purely a playspace t
 
 ## APIs Available
 - IL2 CombatBox Stats 
-- Total Air War Stats
+- Tactical Air War Stats
   
 More to come!
 
 ## API Source
 - https://combatbox.net
+- https://tacticalairwar.com/
