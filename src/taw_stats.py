@@ -55,7 +55,7 @@ def write_stats_to_file(stats, filename="taw_stats.txt"):
 
     midpoint = len(items) // 2
     with open(filename, "w") as f:
-        f.write(f"Tactical Air War Tour - Squad: {stats.get('Squad','N/A')}   Rank: {stats.get('Rank','N/A')}  Flight Time: {stats.get('Total Flight Time','N/A')}\n")
+        f.write(f"Tactical Air War:  {stats.get('Squad','N/A')}  {stats.get('Rank','N/A')}    Flight Time: {stats.get('Total Flight Time','N/A')}\n")
         f.write("  ".join(f"{k}: {v}" for k, v in items[:midpoint]) + "  ")
         f.write("  ".join(f"{k}: {v}" for k, v in items[midpoint:]))
 
