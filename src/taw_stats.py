@@ -5,11 +5,14 @@ from bs4 import BeautifulSoup
 URL = "https://tacticalairwar.com/pilot.php?name=ACG_Wind"
 
 label_aliases = {
-    "Take-Offs": "Sorties",
-    "Air Kills": "Aerial Victories",
-    "Ground Kills": "Ground Targets Destroyed",
-    "Total Flight Time": "Flight Time",
-    "Combat Points":"CP"
+    "Air Kill Streak": "Aerial Victories",
+    "Ground Kill Streak": "Ground Targets Destroyed",
+    "Next Plane":"Next Plane",
+    "Flight Time": "Latest Sortie",
+    "Combat Points":"CP",
+    "Mission":"Mission",
+    "Result":"Status",
+    "Aircraft Type":"Type"
 }
 
 
@@ -29,7 +32,7 @@ def get_taw_stats():
         if len(cells) == 2:
             label = cells[0].text.strip()
             value = cells[1].text.strip()
-            if label in ["Total Flight Time", "Take-Offs", "Air Kills","Ground Kills", "Deaths", "Captures", "Next Plane","Combat Points"]:
+            if label in ["Aircraft Type", "Result", "Mission", "Flight Time", "Air Kill Streak","Ground Kill Streak", "Next Plane","Combat Points"]:
                 stats[label] = value
 
         # Get all <p class="mb-0"> tags
@@ -49,13 +52,13 @@ def get_taw_stats():
 #             f.write(f"{k}: {v}\n")
 
 def write_stats_to_file(stats, filename="taw_stats.txt"):
-    order = ["Air Kills","Ground Kills","Deaths","Captures","Take-Offs","Combat Points"]  # Add more if needed
+    order = ["Mission","Aircraft Type","Result","Air Kill Streak","Ground Kill Streak","Combat Points","Next Plane"]  # Add more if needed
     #ordered_items = [(k, stats[k]) for k in order if k in stats]
     items = [(label_aliases.get(k, k), stats[k]) for k in order if k in stats]
 
     midpoint = len(items) // 2
     with open(filename, "w") as f:
-        f.write(f"Tactical Air War:  {stats.get('Squad','N/A')}  {stats.get('Rank','N/A')}    Flight Time: {stats.get('Total Flight Time','N/A')}\n")
+        f.write(f{stats.get('Squad','N/A')}  {stats.get('Rank','N/A')}    Latest Sortie Flight Time: {stats.get('Latest Sortie','N/A')}\n")
         f.write("  ".join(f"{k}: {v}" for k, v in items[:midpoint]) + "  ")
         f.write("  ".join(f"{k}: {v}" for k, v in items[midpoint:]))
 
